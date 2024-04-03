@@ -1,0 +1,3 @@
+C:/Users/Delia/OneDrive/Desktop/TemaPOO/cmake-build-debug/CMakeFiles/Downloads.dir
+C:/Users/Delia/OneDrive/Desktop/TemaPOO/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Delia/OneDrive/Desktop/TemaPOO/cmake-build-debug/CMakeFiles/rebuild_cache.dir
