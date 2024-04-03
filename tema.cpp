@@ -1,8 +1,6 @@
-
 #include <iostream>
 #include <string>
 #include <list>
-#include <vector>
 
 class Client {
 private:
@@ -83,8 +81,6 @@ public:
     const double& getPret() const {
         return pret;
     }
-
-
 };
 
 class Comanda {
@@ -114,6 +110,7 @@ public:
     void ComandaFlori(const Stoc &floare) {
         flori.push_back(floare);
     }
+
     double calculTotalPlata() {
         double total = 0.0;
         for (const auto& floare : flori) {
@@ -127,37 +124,38 @@ public:
 };
 
 std::ostream& operator<<(std::ostream& os, const Comanda& comanda) {
-    os << "Numarul de flori cumparate este: " << comanda.flori.size()<<std::endl;
+    os << "Numarul de flori cumparate este: " << comanda.flori.size() << std::endl;
 }
 std::istream& operator>>(std::istream& is, Comanda& comanda) {
     std::cout << "Introduceti numarul de flori pentru comanda: ";
     int numar_flori;
     is >> numar_flori;
-    std::cout<<"\n";
+    std::cout << "\n";
+    if (numar_flori > 3) {
+        std::string optiune;
+        std::cout << "Doriti ca aceste flori sa fie facute in buchet? (Da/Nu): ";
+        is >> optiune;
+        if (optiune=="Da") {
+            std::cout << "Buchet creat!" << std::endl;
+            return is;
+        }
+    }
+
     for (int i=0; i<numar_flori;i++) {
         Stoc floare;
+        is >> floare;
         comanda.ComandaFlori(floare);
     }
     return is;
 }
 int main() {
     Client c;
-    std::cin>>c;
-    std::vector<Comanda> comenzi;
-    int n;
-    std::cout << "Introduceti numarul de comenzi: ";
-    std::cin >> n;
-    Stoc stoc;
-    std::cin>>stoc;
-    for (int i = 0; i < n; i++) {
-        Comanda comanda;
-        std::cin >> comanda;
-        comenzi.push_back(comanda);
-    }
+    std::cin >> c;
 
-    for (const auto& comanda : comenzi) {
-        std::cout << comanda << std::endl;
-    }
+    Comanda comanda;
+    std::cin >> comanda;
+
+    std::cout << "Comanda plasata de " << c.getNume() << " este:\n" << comanda << std::endl;
 
     return 0;
 }
